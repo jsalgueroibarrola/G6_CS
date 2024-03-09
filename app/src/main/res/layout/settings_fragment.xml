@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/BACKGROUND"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp">
+
+
+        <TextView
+            style="@style/TEXTS"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="62dp"
+            android:fontFamily="@font/rubik_medium"
+            android:gravity="center"
+            android:text="Ajustes"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        style="@style/BACKGROUND"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/translator_char_icon_no_bg" />
+
+            <TextView
+                style="@style/APP_TITLE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Slick Translate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ver. alpha-0.4.0"
+                android:textColor="@color/smoke" />
+
+            <!-- Bloque de opciones de Apariencia de la app -->
+            <LinearLayout
+                android:id="@+id/darkModeOptionButton"
+                style="@style/ISLANDS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:onClick="aboutButtonPressed"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/purple_dark_mode_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bt_purple_bg"
+                        android:padding="8dp"
+                        android:src="@drawable/baseline_dark_mode_24" />
+
+                    <TextView
+                        style="@style/TEXTS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/purple_dark_mode_button"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="Modo oscuro"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:padding="8dp"
+                        android:src="@drawable/baseline_arrow_forward_ios_24" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- Bloque de info de la app (aquí hay que meter el botón de los comentarios) -->
+            <LinearLayout
+                android:id="@+id/autoresButton"
+                style="@style/ISLANDS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:onClick="aboutButtonPressed"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/red_about_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bt_red_bg"
+                        android:padding="8dp"
+                        android:src="@drawable/round_help_outline_24" />
+
+                    <TextView
+                        style="@style/TEXTS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/red_about_icon"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="Autores"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:padding="8dp"
+                        android:src="@drawable/baseline_arrow_forward_ios_24" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mailButton"
+                style="@style/ISLANDS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/red_mail_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bt_blue_bg"
+                        android:padding="8dp"
+                        android:src="@drawable/baseline_alternate_email_24" />
+
+                    <TextView
+                        style="@style/TEXTS"
+                        android:id="@+id/mail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/red_mail_icon"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="Contáctanos"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:padding="8dp"
+                        android:src="@drawable/baseline_arrow_forward_ios_24" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

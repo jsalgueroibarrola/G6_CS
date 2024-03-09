@@ -1,0 +1,112 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">
+            false
+        </item>
+    </style>
+
+    <style name="MaterialAlertDialog.Material3.Dark" parent="MaterialAlertDialog.Material3">
+        <item name="android:background">@color/dark_grey_3</item>
+        <item name="android:textColorPrimary">@color/light_grey</item>
+        <item name="android:textColorSecondary">@color/light_grey</item>
+        <item name="android:colorAccent">@color/purple</item>
+    </style>
+
+    <!-- Modo oscuro -->
+    <!-- Fondo de la app en modo oscuro -->
+    <style name="BACKGROUND">
+        <item name="android:colorBackground">@color/dark_grey</item>
+    </style>
+
+    <!-- Textos en modo oscuro -->
+    <style name="TEXTS">
+        <item name="android:textColor">@color/light_grey</item>
+    </style>
+
+    <!-- Subtextos en modo oscuro -->
+    <style name="SUBTEXTS">
+        <item name="android:textColor">@color/less_smoke</item>
+    </style>
+
+    <!-- Texto de titulo de la app en modo oscuro-->
+    <style name="APP_TITLE">
+        <item name="android:textColor">@color/light_grey</item>
+        <item name="android:fontFamily">@font/gabarito_medium</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="ACTIVE_NAVBAR_ITEM" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/accent_lighter</item>
+    </style>
+
+    <!-- Cuadros de input de texto en modo claro -->
+    <style name="TRANSLATOR_INPUT_LANG_BUTTON">
+        <item name="android:background">@drawable/input_lang_button_dark</item>
+        <item name="android:textColor">@color/purple_text_input</item>
+        <item name="android:popupBackground">@drawable/spinner_dark_bg</item>
+    </style>
+
+    <style name="TRANSLATOR_OUTPUT_LANG_BUTTON">
+        <item name="android:background">@drawable/output_lang_button_dark</item>
+        <item name="android:textColor">@color/purple_text_input</item>
+        <item name="android:popupBackground">@drawable/spinner_dark_bg</item>
+    </style>
+
+    <!-- Fondo de la titlebar superior en modo claro -->
+    <style name="TITLEBAR">
+        <item name="android:background">@color/dark_grey_3</item>
+    </style>
+
+    <!-- Botones normales en modo oscuro -->
+    <style name="BUTTONS">
+        <item name="android:background">@color/dark_grey_2</item>
+        <item name="android:textColor">@color/light_grey</item>
+    </style>
+
+    <!-- Boton de traducir en modo oscuro -->
+    <style name="TRANSLATE_BUTTON" parent="@style/Widget.Material3.Button.ElevatedButton">
+        <item name="android:background">@drawable/ripple_translate_bt_dark</item>
+        <item name="android:textColor">@color/light_grey</item>
+    </style>
+
+    <style name="STROKE">
+        <item name="android:foreground">@drawable/inverted_corners_dark</item>
+    </style>
+
+    <!-- Cuadros de input de texto en modo oscuro -->
+    <style name="TRANSLATOR_TEXT_BOXES">
+        <item name="android:background">@drawable/edittext_design_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Islas de opciones en modo claro -->
+    <style name="ISLANDS">
+        <item name="android:background">@drawable/settings_option_bg_dark</item>
+    </style>
+
+    <!-- Islas de opciones en modo claro (sin ripple) -->
+    <style name="NO_RIPPLE_ISLANDS">
+        <item name="android:background">@drawable/settings_option_bg_dark_no_ripple</item>
+    </style>
+
+    <!-- Icon Button Copiar en modo oscuro -->
+    <style name="COPY_ICON_BUTTON">
+        <item name="android:background">@drawable/ripple_bt</item>
+        <item name="srcCompat">@drawable/baseline_content_copy_24_dark</item>
+    </style>
+
+    <!-- Icon Button Borrar en modo oscuro -->
+    <style name="DELETE_ICON_BUTTON">
+        <item name="android:background">@drawable/ripple_bt</item>
+        <item name="srcCompat">@drawable/baseline_delete_outline_24_dark</item>
+    </style>
+
+    <style name="FLOATING_DN_BUTTON">
+        <item name="android:backgroundTint">#674c69</item>
+    </style>
+
+</resources>
