@@ -5,6 +5,8 @@ jobs:
   test-java:
     docker:
       - image: cimg/openjdk:17.0
+    environment:
+      ANDROID_HOME: /opt/android/sdk
     steps:
       - checkout
       - run:
@@ -25,11 +27,6 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.gradle/caches
-      - run:
-          name: Build Android App
-          command: |
-            sudo ANDROID_HOME=/usr/local/android-sdk
-            ./gradlew dependencies
       - run:
           name: Run Tests
           command: |
