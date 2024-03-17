@@ -21,17 +21,15 @@ jobs:
           command: |
             sudo chmod +x gradlew
             ./gradlew androidDependencies
+      - run:
+          name: Run Tests
+          command: ./gradlew check
       - store_test_results:
           path: build/test-results
       - save_cache:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.gradle/caches
-      - run:
-          name: Run Tests
-          command: |
-            sudo chmod +x gradlew
-            ./gradlew lint test
       - store_artifacts:
           path: build/reports
   deploy:
