@@ -2,15 +2,17 @@ package com.example.myapplication.fragments;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
-import android.app.Activity;
+import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.autofill.AutofillValue;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +23,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
+
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.LanguageDetection;
@@ -33,7 +39,8 @@ import java.util.Objects;
 public class TraductorFragment extends Fragment {
 
     private EditText multi2;
-    private String idioma_origin, idioma_destination;
+    private String idiomaOrigin;
+    private String idiomaDestination;
 
     private TextView charCounter;
 
@@ -45,21 +52,18 @@ public class TraductorFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.translator_fragment, container, false);
     }
-
+    @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupView();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
+
 
 
     public void setupView() {
-        Spinner spinner_origin = requireView().findViewById(R.id.spinner_origin_lang);
-        Spinner spinner_destination = requireView().findViewById(R.id.spinner_destination_lang);
+        Spinner spinnerOrigin = requireView().findViewById(R.id.spinner_origin_lang);
+        Spinner spinnerDestination = requireView().findViewById(R.id.spinner_destination_lang);
 
         // Asignar variable al contador de caracteres
         charCounter = requireView().findViewById(R.id.charCounter);
@@ -69,14 +73,14 @@ public class TraductorFragment extends Fragment {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_origin.setAdapter(adapter);
-        spinner_destination.setAdapter(adapter2);
+        spinnerOrigin.setAdapter(adapter);
+        spinnerDestination.setAdapter(adapter2);
 
         // Configura el listener para el Spinner
-        spinner_origin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerOrigin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                idioma_origin = parentView.getItemAtPosition(position).toString();
+                idiomaOrigin = parentView.getItemAtPosition(position).toString();
                 // "seleccion" contiene el texto del elemento seleccionado
             }
 
@@ -87,10 +91,10 @@ public class TraductorFragment extends Fragment {
         });
 
         // Configura el listener para el Spinner
-        spinner_destination.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerDestination.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                idioma_destination = parentView.getItemAtPosition(position).toString();
+                idiomaDestination = parentView.getItemAtPosition(position).toString();
                 // "seleccion" contiene el texto del elemento seleccionado
             }
 
@@ -106,7 +110,7 @@ public class TraductorFragment extends Fragment {
         multi1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //antes de escribir en el traductor
             }
 
             @Override
@@ -122,16 +126,16 @@ public class TraductorFragment extends Fragment {
 
                 // Si el contador supera los 1500 caracteres, cambiar el color del contador a rojo
                 if (charCount > 1500) {
-                    charCounter.setTextColor(getResources().getColor(R.color.accent));
+                    charCounter.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent));
                 } else {
-                    charCounter.setTextColor(getResources().getColor(R.color.less_smoke));
+                    charCounter.setTextColor(ContextCompat.getColor(requireContext(), R.color.less_smoke));
                 }
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                //despues de haber introducido la frase/palabra a traducir
             }
         });
 
@@ -151,19 +155,19 @@ public class TraductorFragment extends Fragment {
             Toast.makeText(this.requireActivity(), "No hay texto para traducir", Toast.LENGTH_SHORT).show();
         } else {
             hideSoftKeyboard(this.requireActivity());
-            if (this.idioma_origin.equals("AUTO")){
+            if (this.idiomaOrigin.equals("AUTO")){
                 LanguageDetection languageDetection = new LanguageDetection();
-                this.idioma_origin = languageDetection.detect(text);
+                this.idiomaOrigin = languageDetection.detect(text);
                 // Cambiar valor de spinner origin lang
 
-                Spinner spinner_origin = requireView().findViewById(R.id.spinner_origin_lang);
+                Spinner spinnerOriginTr = requireView().findViewById(R.id.spinner_origin_lang);
                 for (int i = 0; i < 11; i++) {
-                    if (spinner_origin.getItemAtPosition(i).equals(this.idioma_origin)) {
-                        spinner_origin.setSelection(i);
+                    if (spinnerOriginTr.getItemAtPosition(i).equals(this.idiomaOrigin)) {
+                        spinnerOriginTr.setSelection(i);
                     }
                 }
             }
-            String trText = MainActivity.translator.traducir(this.idioma_origin, this.idioma_destination, text);
+            String trText = MainActivity.translator.traducir(this.idiomaOrigin, this.idiomaDestination, text);
             multi2.setText(trText);
         }
     }
@@ -176,12 +180,13 @@ public class TraductorFragment extends Fragment {
             Toast.makeText(this.requireActivity(), "No hay texto para copiar", Toast.LENGTH_SHORT).show();
         } else {
             ClipboardManager clipboard = (ClipboardManager) requireActivity().getSystemService(CLIPBOARD_SERVICE);
-            clipboard.setText(text2);
+            ClipData clip = ClipData.newPlainText("Label", text2);
+            clipboard.setPrimaryClip(clip);
         }
     }
 
     public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager.isAcceptingText()) {
             inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(activity.getCurrentFocus()).getWindowToken(), 0);
         }
