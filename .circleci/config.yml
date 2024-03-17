@@ -5,8 +5,6 @@ jobs:
   test-java:
     docker:
       - image: cimg/openjdk:17.0
-    environment:
-      ANDROID_HOME: /opt/android/sdk
     steps:
       - checkout
       - run:
@@ -21,6 +19,9 @@ jobs:
           command: |
             sudo chmod +x gradlew
             ./gradlew androidDependencies
+      - run:
+          name: remove local settings
+          command: rm local.properties
       - run:
           name: Run Tests
           command: ./gradlew check
