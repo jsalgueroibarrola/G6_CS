@@ -26,6 +26,11 @@ jobs:
           paths:
             - ~/.gradle/caches
       - run:
+        name: Build Android App
+        command: |
+          sudo ANDROID_HOME=/usr/local/android-sdk
+          ./gradlew dependencies
+      - run:
           name: Run Tests
           command: |
             sudo chmod +x gradlew
