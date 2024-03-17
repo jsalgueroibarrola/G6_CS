@@ -16,7 +16,9 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: |
+            sudo chmod +x gradlew
+            ./gradlew androidDependencies
       - store_test_results:
           path: build/test-results
       - save_cache:
@@ -25,7 +27,9 @@ jobs:
             - ~/.gradle/caches
       - run:
           name: Run Tests
-          command: ./gradlew lint test
+          command: |
+            sudo chmod +x gradlew
+            ./gradlew lint test
       - store_artifacts:
           path: build/reports
   deploy:
