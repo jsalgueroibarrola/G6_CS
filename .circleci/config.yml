@@ -20,9 +20,6 @@ jobs:
             sudo chmod +x gradlew
             ./gradlew androidDependencies
       - run:
-          name: remove local settings
-          command: rm local.properties
-      - run:
           name: Run Tests
           command: ./gradlew check
       - store_test_results:
