@@ -2,7 +2,7 @@
 # Stacks detected: deps:java:.,tool:gradle:
 version: 2.1
 jobs:
-  test-java:
+  build-and-deploy:
     docker:
       - image: cimg/android:2023.09.1
     environment:
@@ -47,4 +47,4 @@ workflows:
       - build-and-deploy
     # - deploy:
     #     requires:
-    #       - test-java
+    #       - build-and-deploy
