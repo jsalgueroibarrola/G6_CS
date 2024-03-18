@@ -42,7 +42,7 @@ jobs:
           name: deploy
           command: '#e.g. ./deploy.sh'
 workflows:
-  build-and-test:
+  build-and-deploy:
     jobs:
       - build-and-deploy
     # - deploy:
