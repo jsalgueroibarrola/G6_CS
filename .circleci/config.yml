@@ -3,7 +3,7 @@
 version: 2.1
 jobs:
   test-java:
-   docker:
+    docker:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx2048m
