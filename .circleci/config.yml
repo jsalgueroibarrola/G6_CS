@@ -3,8 +3,10 @@
 version: 2.1
 jobs:
   test-java:
-    docker:
-      - image: cimg/openjdk:17.0
+   docker:
+      - image: circleci/android:api-25-alpha
+    environment:
+      JVM_OPTS: -Xmx2048m
     steps:
       - checkout
       - run:
