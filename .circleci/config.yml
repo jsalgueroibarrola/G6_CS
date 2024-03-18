@@ -23,7 +23,7 @@ jobs:
             ./gradlew androidDependencies
       - run:
           name: Run Tests
-          command: ./gradlew check
+          command: ./gradlew test
       - store_test_results:
           path: build/test-results
       - save_cache:
