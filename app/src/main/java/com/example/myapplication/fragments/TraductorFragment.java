@@ -2,11 +2,10 @@ package com.example.myapplication.fragments;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,9 +22,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -41,7 +37,6 @@ public class TraductorFragment extends Fragment {
     private EditText multi2;
     private String idiomaOrigin;
     private String idiomaDestination;
-
     private TextView charCounter;
 
     public static TraductorFragment newInstance() {
@@ -52,14 +47,12 @@ public class TraductorFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.translator_fragment, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupView();
     }
-
-
-
 
     public void setupView() {
         Spinner spinnerOrigin = requireView().findViewById(R.id.spinner_origin_lang);
@@ -155,7 +148,7 @@ public class TraductorFragment extends Fragment {
             Toast.makeText(this.requireActivity(), "No hay texto para traducir", Toast.LENGTH_SHORT).show();
         } else {
             hideSoftKeyboard(this.requireActivity());
-            if (this.idiomaOrigin.equals("AUTO")){
+            if (this.idiomaOrigin.equals("AUTO")) {
                 LanguageDetection languageDetection = new LanguageDetection();
                 this.idiomaOrigin = languageDetection.detect(text);
                 // Cambiar valor de spinner origin lang
