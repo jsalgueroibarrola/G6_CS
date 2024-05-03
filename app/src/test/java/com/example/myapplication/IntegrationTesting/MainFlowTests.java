@@ -1,3 +1,5 @@
+package com.example.myapplication.IntegrationTesting;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
@@ -18,23 +20,19 @@ public class MainFlowTests {
 
     @Test
     public void testMainFlow() {
-        // Prueba del flujo principal de la aplicación
         ActivityScenario.launch(MainActivity.class);
-
-        // Verificar si se muestra correctamente la pantalla principal
         Espresso.onView(ViewMatchers.withId(R.id.content)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
-        // Navegar a la pestaña de Traductor
+        //Traductor
         Espresso.onView(ViewMatchers.withId(R.id.traductor)).perform(ViewActions.click());
         Espresso.onView(ViewMatchers.withId(R.id.multiText1)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
-        // Navegar a la pestaña de Historial
+        //Historial
         Espresso.onView(ViewMatchers.withId(R.id.historial)).perform(ViewActions.click());
         Espresso.onView(ViewMatchers.withId(R.id.HistorialList)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
-        // Navegar a la pestaña de Ajustes
+        //Ajustes
         Espresso.onView(ViewMatchers.withId(R.id.ajustes)).perform(ViewActions.click());
         Espresso.onView(ViewMatchers.withId(R.id.autoresButton)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
     }
 }
-
