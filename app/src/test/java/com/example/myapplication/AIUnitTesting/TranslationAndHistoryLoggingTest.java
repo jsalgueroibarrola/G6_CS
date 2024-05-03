@@ -1,8 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.AIUnitTesting;
 
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+
+import com.example.myapplication.SpecificTranslator;
 
 import net.suuft.libretranslate.Language;
 

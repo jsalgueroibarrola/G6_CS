@@ -1,6 +1,8 @@
-package com.example.myapplication;
+package com.example.myapplication.AIUnitTesting;
 
 import static org.junit.Assert.assertEquals;
+
+import com.example.myapplication.TranslatorData;
 
 import org.junit.Test;
 

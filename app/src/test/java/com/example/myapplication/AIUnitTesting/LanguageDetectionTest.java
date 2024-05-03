@@ -1,11 +1,13 @@
-package com.example.myapplication;
+package com.example.myapplication.AIUnitTesting;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.example.myapplication.LanguageDetection;
 import com.github.pemistahl.lingua.api.Language;
+
 import org.junit.Before;
 import org.junit.Test;
 

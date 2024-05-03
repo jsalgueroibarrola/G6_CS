@@ -15,7 +15,9 @@ public class SpecificTranslator {
 
     public String translate(Language fromLanguage, Language toLanguage, String text) {
         String translatedText;
-        // Check whether to perform or not automatic fromLanguage detection
+        if (text == null || fromLanguage == null || toLanguage == null) {
+            return "";
+        }
         if (fromLanguage.equals(Language.NONE)) {
             translatedText = Translator.translate(toLanguage, text);
         } else {
