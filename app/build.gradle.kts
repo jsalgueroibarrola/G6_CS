@@ -49,5 +49,8 @@ dependencies {
     testImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("io.cucumber:cucumber-android:7.14.0")
+    implementation("io.cucumber:cucumber-junit:7.17.0")
+    implementation("io.cucumber:cucumber-java:7.17.0")
     compile("com.android.support.constraint:constraint-layout:2.0.4")
 }
