@@ -3,24 +3,19 @@ package com.example.myapplication.IntegrationTesting;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
-
 import org.junit.Rule;
 import org.junit.Test;
-
-
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
+import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -46,12 +41,14 @@ public class ImageButtonTest {
 
         Espresso.onView(withId(R.id.imageButton)).perform(ViewActions.click());
 
-        ClipboardManager clipboard = (ClipboardManager) activityScenarioRule.getScenario().getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
-        assertNotNull(clipboard);
-        ClipData clipData = clipboard.getPrimaryClip();
-        assertNotNull(clipData);
-        assertNotNull(clipData.getItemAt(0).getText());
-        assertEquals("Hola", clipData.getItemAt(0).getText().toString());
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+            assertNotNull(clipboard);
+            ClipData clipData = clipboard.getPrimaryClip();
+            assertNotNull(clipData);
+            assertNotNull(clipData.getItemAt(0).getText());
+            assertEquals("Hola", clipData.getItemAt(0).getText().toString());
+        });
 
         //Comprueba que el botón esté habilitado
         Espresso.onView(withId(R.id.imageButton)).check(matches(isEnabled()));
