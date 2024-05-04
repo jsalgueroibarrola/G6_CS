@@ -1,40 +1,32 @@
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.matcher.ViewMatchers;
+package com.example.myapplication;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+public class TranslatorData {
+    private final String toLanguage;
+    private final String fromLanguage;
+    private final String originalText;
+    private final String translatedText;
 
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+    public TranslatorData(String fromLanguage, String toLanguage, String originalText, String translatedText) {
+        this.fromLanguage = fromLanguage;
+        this.toLanguage = toLanguage;
+        this.originalText = originalText;
+        this.translatedText = translatedText;
+    }
 
-@RunWith(AndroidJUnit4ClassRunner.class)
-@LargeTest
-public class MainFlowTests {
+    public String getToLanguage() {
+        return toLanguage;
+    }
 
-    @Test
-    public void testMainFlow() {
-        // Prueba del flujo principal de la aplicación
-        ActivityScenario.launch(MainActivity.class);
+    public String getFromLanguage() {
+        return fromLanguage;
+    }
 
-        // Verificar si se muestra correctamente la pantalla principal
-        Espresso.onView(ViewMatchers.withId(R.id.content)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+    public String getOriginalText() {
+        return originalText;
+    }
 
-        // Navegar a la pestaña de Traductor
-        Espresso.onView(ViewMatchers.withId(R.id.traductor)).perform(ViewActions.click());
-        Espresso.onView(ViewMatchers.withId(R.id.multiText1)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-
-        // Navegar a la pestaña de Historial
-        Espresso.onView(ViewMatchers.withId(R.id.historial)).perform(ViewActions.click());
-        Espresso.onView(ViewMatchers.withId(R.id.HistorialList)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-
-        // Navegar a la pestaña de Ajustes
-        Espresso.onView(ViewMatchers.withId(R.id.ajustes)).perform(ViewActions.click());
-        Espresso.onView(ViewMatchers.withId(R.id.autoresButton)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+    public String getTranslatedText() {
+        return translatedText;
     }
 }
 
