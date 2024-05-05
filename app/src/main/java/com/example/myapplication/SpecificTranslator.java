@@ -32,4 +32,8 @@ public class SpecificTranslator {
     public ArrayList<TranslatorData> getHistory() {
         return history;
     }
+
+    public void clearHistory() {
+        history.clear();
+    }
 }

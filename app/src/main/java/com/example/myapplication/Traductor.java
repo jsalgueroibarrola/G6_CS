@@ -24,4 +24,8 @@ public class Traductor {
     public ArrayList<TranslatorData> getHistory() {
         return translator.getHistory();
     }
+
+    public void clearHistory() {
+        translator.clearHistory();
+    }
 }

@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class HistorialFragment extends Fragment implements HistorialAdapter.OnItemDeleteListener, HistorialAdapter.OnItemCopyListener{
 
+    private HistorialAdapter wordsAdapter;
     public static HistorialFragment newInstance() {
         return new HistorialFragment();
     }
@@ -38,7 +39,7 @@ public class HistorialFragment extends Fragment implements HistorialAdapter.OnIt
 
         ListView List = requireView().findViewById(R.id.HistorialList);
 
-        ArrayList<TranslatorData> Ejemplo = MainActivity.translator.getHistory();
+
 
         //Vincular botón de descarga con el método descargarTexto
         view.findViewById(R.id.downloadHistory).setOnClickListener(new View.OnClickListener() {
@@ -49,7 +50,7 @@ public class HistorialFragment extends Fragment implements HistorialAdapter.OnIt
         });
 
         // Ocultar el botón de descarga si no hay historial y mostrar el texto de que no hay historial
-        if (Ejemplo.isEmpty()) {
+        if (MainActivity.translator.getHistory().isEmpty()) {
             view.findViewById(R.id.downloadHistory).setVisibility(View.GONE);
             view.findViewById(R.id.emptyHistory).setVisibility(View.VISIBLE);
         }
@@ -59,8 +60,13 @@ public class HistorialFragment extends Fragment implements HistorialAdapter.OnIt
             view.findViewById(R.id.emptyHistory).setVisibility(View.GONE);
         }
 
+        view.findViewById(R.id.btnAllDelete).setOnClickListener(view1 -> {
+            MainActivity.translator.clearHistory();
+            wordsAdapter.notifyDataSetChanged();
+            Toast.makeText(requireActivity(), "Se ha borrado todo el historial", Toast.LENGTH_SHORT).show();
+        });
 
-        HistorialAdapter wordsAdapter = new HistorialAdapter(this.requireActivity(), 0, Ejemplo);
+        wordsAdapter = new HistorialAdapter(this.requireActivity(), 0, MainActivity.translator.getHistory());
         wordsAdapter.setOnItemDeleteListener(this);
         wordsAdapter.setOnItemCopyListener(this);
         List.setAdapter(wordsAdapter);
